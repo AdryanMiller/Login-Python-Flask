@@ -7,6 +7,18 @@
     <title>Login</title>
 </head>
 <body>
+
+    {% set menssagem = get_flashed_messages() %}
+    {% if menssagem %}
+
+    <div class="container">
+        <div class="cookiesContent" id="cookiesPopup">
+          <button class="accept">Usuario Invalido !</button>
+        </div>
+      </div>
+    {% endif %}
+
+
     <div class="form-page">
 
         <form action="/login" class="page-register" method="post">

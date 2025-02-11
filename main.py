@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, flash
 
 app = Flask('__name__')
 app.config['SECRET_KEY'] = 'IGNORE'
@@ -18,6 +18,7 @@ def login():
     if nome == 'adryan' and senha == '123':
         return render_template('home.html')
     else:
+        flash('Usuario invalido')
         return redirect('/')
 
     return redirect('/')
