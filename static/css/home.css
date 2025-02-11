@@ -161,7 +161,7 @@ body
     opacity: 1;
 
   @media (prefers-reduced-motion: no-preference) {
-    animation: fade-in 1.9s ease-out infinite;
+    animation: fade-in 1.9s ease-out;
     animation-composition: replace;
 
     &:hover {
