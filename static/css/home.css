@@ -107,24 +107,6 @@ body
     text-decoration: underline;
 }
 
-.form-page .icons
-{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-
-.form-page .icons i
-{
-    margin-top: 30px;
-    font-size: 30px;
-    padding: 1px;
-    cursor: pointer;
-    color: rgb(40, 84, 87);
-    
-}
-
-
 
 .cookiesContent {
     display: flex;

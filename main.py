@@ -8,12 +8,13 @@ app.config['SECRET_KEY'] = 'IGNORE'
 @app.route('/')
 
 def home():
-    return render_template('login.html')
+    return render_template('cadastrarUsuario.html')
 
 @app.route('/login', methods =['POST'])
 def login():
 
     nome = request.form.get('nome')
+    email = request.form.get('email')
     senha = request.form.get('senha')
     
     with open('usuarios.json') as usuariosTemp:
@@ -24,10 +25,10 @@ def login():
 
             cont += 1
 
-            if usuario == 'adm' and senha == '000':
+            if nome == 'adm' and senha == '000':
                 return render_template("cadastrarUsuario.html")
             
-            if usuario['nome'] == nome and usuario['senha'] == senha:
+            if usuario['nome'] == nome or usuario['email'] == email and usuario['senha'] == senha:
                 return render_template('home.html')
             
             if cont >= len(usuarios):
@@ -35,7 +36,28 @@ def login():
                 return redirect('/')
 
 
+@app.route('/cadastrarUsuario', methods=['POST'])
+def cadastrarUsuario():
+    user = []
+    nome = request.form.get('nome')
+    email = request.form.get('email')
+    senha = request.form.get('senha')
+    user = [
 
+        {
+            "nome": nome,
+            "email": email,
+            "senha": senha
+        }
+    ]
+    with open('usuarios.json') as usuariosTemp:
+            usuarios = json.load(usuariosTemp)
+
+    usuariosNovo= usuarios + user
+    with open('usuarios.json', 'w') as gravarTemp:
+        json.dump(usuariosNovo, gravarTemp, indent= 5)
+        
+    return render_template("login.html")
 
 
 
